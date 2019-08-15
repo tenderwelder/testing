@@ -1,2 +1,58 @@
 1. What? Invoice (which features? Adding variable number of arguments, description length)
 2. Input => expected (as MS Excel or CVS below)
+
+
+
+
+Company.Name Limit  50 characters 
+Comapny.Address Limit 200 characters 
+Company.Email check if valid(pass) send confirmation , if not.valid(fail) display error "invalid E-mail"
+Product.name Limit 50 characters 
+quantity 0-99
+Price
+
+TotalRow=quantity*price
+
+function calculateRow1(price, quantity)
+var test = {
+    positive: {
+        value: 2,
+        rate: 50,
+        expected: 100
+    },
+ 
+ Comment Section : Limit Description Lenght 300 Characters 
+ var test = {
+    positive: {
+        value: 150,
+        expected: 150
+    },
+    negative: {
+        value: -100,
+        rate: 0.22,
+        expected: -22
+    },
+    Total= Row1 + Row2 + Row3; 
+    function calculateTotal (row1, row2, row3)
+var test = {
+    positive: {
+        values: 20,70,20
+       
+        expected: 110
+        
+        
+        TaxDeduction = Total*0.2 // at 20% tax rate
+        
+        AfterTax = Total - TaxDeduction 
+        If (Total=1000, taxDeduction=Total*0.2)
+        function calculateAfterTax (total, taxDeduction)
+var test = {
+    positive: {
+        value: 1000
+        rate: 0.2
+       
+        expected: 800
+        
+    
+    
+ 
