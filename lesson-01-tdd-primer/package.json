@@ -4,11 +4,25 @@
   "description": "TDD first steps",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean-install": "rm package-lock.*; rm -fr node_modules; npm install; npm shrinkwrap",
+    "aliases": "alias jasmine-node=./node_modules/.bin/jasmine-node; alias eslint=./node_modules/.bin/eslint; alias istanbul=./node_modules/.bin/istanbul",
+    "prep-tests": "rm -fr reports/; mkdir reports/; mkdir reports/eslint/; mkdir reports/junit/; echo \"Reports\n---\" > reports/README.md; echo \"Unit tests results\n---\" > reports/junit/README.md;  echo \"eslint results\n---\" > reports/eslint/README.md",
+    "_eslint": "npm run aliases; OUT='./reports/eslint/eslint.txt'; date > $OUT; eslint src/*.js >> $OUT; eslint ./index.js >> $OUT; eslint tests/specs/*.js >> $OUT; echo \"DONE!\"",
+    "_junit": "npm run prep-tests; npm run aliases; jasmine-node --junitreport --growl tests/specs/; mv reports/*.xml reports/junit/; git checkout tests/props/*.*",
+    "_coverage": "rm -fr reports/coverage/; npm run aliases; istanbul cover --include-all-sources -x \"**src/tool/**\" jasmine-node tests/specs/; rm -fr reports/coverage/; mv coverage reports/; git checkout tests/props/*.*",
+    "test": "./node_modules/.bin/jasmine-node --growl tests/specs/"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bash-color": "0.0.4"
+  },
+  "devDependencies": {
+    "bash-color": "0.0.4",
+    "eslint": "^6.1.0",
+    "growl": "^1.10.5",
+    "istanbul": "^0.4.5",
+    "jasmine-node": "^3.0.0",
+    "md5-file": "^4.0.0"
   }
 }
