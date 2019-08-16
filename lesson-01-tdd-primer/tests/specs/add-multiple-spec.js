@@ -1,6 +1,7 @@
 require('./../../src/sign-test')(__filename);
 
 var addMultiple = require('./../../src/add-multiple'),
+    calculateVat = require('./../../src/calculate-vat'),
     test = {
         positive_only: {
             value: [100, 345, 901],
@@ -10,6 +11,13 @@ var addMultiple = require('./../../src/add-multiple'),
             value: [-5, -100, 45, 99],
             expected: 39
         },
+        with_vat: {
+            value: [
+                100,
+                calculateVat(100, 0.22)
+                ],
+            expected: 122
+        },
         no_number: {
             value: [
                 1,
@@ -17,7 +25,7 @@ var addMultiple = require('./../../src/add-multiple'),
                 6,
                 {is: 'object'}
             ],
-            expected: false
+            expected: null
         }
     };
 
@@ -27,6 +35,9 @@ describe('for numeric values', function () {
     });
     it('For mixed values of -5, -100, 45, 99 is 39', function () {
         expect(addMultiple(test.mixed.value)).toBe(test.mixed.expected);
+    });
+    it('For two args NET 100 and VAT of 22% value is 122', function () {
+        expect(addMultiple(test.with_vat.value)).toBe(test.with_vat.expected);
     });
 });
 
