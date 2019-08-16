@@ -13,5 +13,5 @@ module.exports = function calculateVat(net, vatRate) {
         return net*vatRate;
     }
     return false;
-}
+};
 
